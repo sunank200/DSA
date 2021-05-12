@@ -103,6 +103,9 @@ def test_mah():
     a_3 = [6, 2, 5, 4, 5, 1, 6]
     assert largest_rectangle_area(a_3) == 12, "Test case:3 failed."
 
+    a_4 = [0, 1, 1, 0]
+    assert largest_rectangle_area(a_4) == 2, "Test case:4 failed."
+
 
 if __name__ == "__main__":
     test_mah()
