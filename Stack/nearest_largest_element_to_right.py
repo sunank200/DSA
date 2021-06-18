@@ -39,11 +39,13 @@ def next_larger_element(arr, n):
     answer.reverse()
     return answer
 
+
 def test_ngr():
     arr1 = [1, 3, 2, 4]
-    assert next_larger_element(arr1,len(arr1)) == [3, 4, 4, -1], "Test case 1 failed."
+    assert next_larger_element(arr1, len(arr1)) == [3, 4, 4, -1], "Test fail."
+
 
 if __name__ == "__main__":
     test_ngr()
-    arr = [1,3,0,0,1,2,4]
-    print(next_larger_element(arr,len(arr)))
+    arr = [1, 3, 0, 0, 1, 2, 4]
+    print(next_larger_element(arr, len(arr)))

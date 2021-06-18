@@ -2,7 +2,7 @@
 # Recursively sort first n-1 elements.
 # Insert the last element at its correct position in the sorted array.
 
-# Sort an array using recursion
+# Sort an array using Recursion
 def sort_using_recursion(arr, n):
     if n <= 1:
         return

@@ -1,13 +1,16 @@
-"""
-Given a binary matrix. Find the maximum area of a rectangle formed only of 1s in the given matrix.
+"""Given a binary matrix. Find the maximum area of a rectangle formed only
+of 1s in the given matrix.
 
 Example 1:
 
-Input: n = 4, m = 4 M[][] = {{0 1 1 0}, {1 1 1 1}, {1 1 1 1}, {1 1 0 0}} Output: 8 Explanation: For the above test
-case the matrix will look like 0 1 1 0 1 1 1 1 1 1 1 1 1 1 0 0 the max size rectangle is 1 1 1 1 1 1 1 1 and area is
-4 *2 = 8. Your Task: Your task is to complete the function maxArea which returns the maximum size rectangle area in a
-binary-sub-matrix with all 1’s. The function takes 3 arguments the first argument is the Matrix M[ ] [ ] and the next
-two are two integers n and m which denotes the size of the matrix M.
+Input: n = 4, m = 4 M[][] = {{0 1 1 0}, {1 1 1 1}, {1 1 1 1}, {1 1 0 0}}
+Output: 8 Explanation: For the above test case the matrix will look like 0 1
+1 0 1 1 1 1 1 1 1 1 1 1 0 0 the max size rectangle is 1 1 1 1 1 1 1 1 and
+area is 4 *2 = 8. Your Task: Your task is to complete the function maxArea
+which returns the maximum size rectangle area in a binary-sub-matrix with
+all 1’s. The function takes 3 arguments the first argument is the Matrix M[
+] [ ] and the next two are two integers n and m which denotes the size of
+the matrix M.
 
 Expected Time Complexity : O(n*m)
 Expected Auixiliary Space : O(m)
@@ -101,13 +104,13 @@ def calculate_maximum_area_of_histogram(arr):
 
 
 def max_area(M, n, m):
-    '''
+    """
     max_area returns maximum area of the rectange.
     :param M: 2d matix
     :param n: rows
     :param m: columns
     :return: maximum area
-    '''
+    """
     # make 4 histograms and compute maximum area of histogram.
     # max area of all is result.
     histograms = []

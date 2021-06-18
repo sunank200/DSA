@@ -1,8 +1,10 @@
-"""Problem Find the largest rectangular area possible in a given histogram where the largest rectangle can be made of
-a number of contiguous bars. Assume that all bars have same width and the width is 1 unit.
+"""Problem Find the largest rectangular area possible in a given histogram
+where the largest rectangle can be made of a number of contiguous bars.
+Assume that all bars have same width and the width is 1 unit.
 
-Given n non-negative integers representing the histogram's bar height where the width of each bar is 1, find the area
-of largest rectangle in the histogram.
+Given n non-negative integers representing the histogram's bar height where
+the width of each bar is 1, find the area of largest rectangle in the
+histogram.
 
 This is what we have to calculate.
 

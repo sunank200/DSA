@@ -4,7 +4,7 @@ def fib_num(num):
     if num == 1:
         return 1
     else:
-        return fib_num(num-1) + fib_num(num-2)
+        return fib_num(num - 1) + fib_num(num - 2)
 
 
 if __name__ == "__main__":

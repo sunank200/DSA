@@ -1,6 +1,6 @@
 def sum_recursion(calnum, n):
     calnum = calnum + 1
-    print("Enter [{}]: sum_recursion(n={})\n".format(calnum,n))
+    print("Enter [{}]: sum_recursion(n={})\n".format(calnum, n))
     total = 0
     if n == 1:
         total = total + 1
@@ -14,6 +14,11 @@ def sum_recursion(calnum, n):
     print("return: n={}, total = {} \n".format(n, total))
     return total
 
+
 if __name__ == "__main__":
     startnum = 3
-    print("Sum of first {} integers using recurssion is {}".format(startnum, sum_recursion(0, startnum)))
+    print(
+        "Sum of first {} integers using recurssion is {}".format(
+            startnum, sum_recursion(0, startnum)
+        )
+    )

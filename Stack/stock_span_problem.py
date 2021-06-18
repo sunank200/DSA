@@ -1,8 +1,10 @@
 """
-The stock span problem is a type of financial problem based on stocks where daily price of a stock is given.
+The stock span problem is a type of financial problem based on stocks where
+daily price of a stock is given.
 
-The span of the stock's price today is defined as the maximum number of consecutive days (starting from today and
-going backwards) for which the price of the stock was less than or equal to today's price.
+The span of the stock's price today is defined as the maximum number of
+consecutive days (starting from today andgoing backwards) for which the
+ price of the stock was less than or equal to today's price.
 
 Example -
 Input: [100, 80, 60, 70, 60, 75, 85]
