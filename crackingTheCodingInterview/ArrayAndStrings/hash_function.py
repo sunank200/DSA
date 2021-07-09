@@ -48,12 +48,16 @@ class HashTable:
 
     def insert(self, key, value):
         _hashed_key = self.hash_function(key)
+        bucket = self.hash_table[_hashed_key]
         if self.search(key) is None:
             # append the (key, value) if it doesn't exists
-            self.hash_table[_hashed_key].append((key, value))
+            bucket.append((key, value))
         else:
             # replace the (key, value) if it exists
-            self.hash_table[_hashed_key] = (key, value)
+            for index, key_val in enumerate(bucket):
+                k, v = key_val
+                if k == key:
+                    bucket[index] = (key, value)
 
     def delete(self, key):
         if self.search(key):
