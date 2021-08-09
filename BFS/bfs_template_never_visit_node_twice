@@ -1,0 +1,58 @@
+"""
+Sometimes, it is important to make sure that we never visit a node twice. Otherwise, we might get stuck in an infinite
+loop, e.g. in graph with cycle. If so, we can add a hash set to the code above to solve this problem.
+Here is the pseudocode after modification:
+"""
+
+class Node:
+    def __init__(self):
+        pass
+
+class Queue:
+    def __init__(self):
+        self.q = []
+
+    def is_empty(self):
+        return len(self.q) == 0
+
+    def enqueue(self, elm):
+        self.q.append(elm)
+
+    def dequeue(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+
+        self.q.pop(0)
+
+    def top(self):
+        if self.is_empty():
+            return None
+        return self.q[0]
+
+    def q_size(self):
+        return len(self.q)
+
+
+def bfs(root:Node, target:Node)->int:
+    qu = Queue()
+    visted = set()
+    step = 0
+    qu.enqueue(root)
+    set.add(root)
+
+    while not qu.is_empty():
+        step += 1
+        size = qu.q_size()
+
+        for i in range(0,size):
+            current_node = qu.top()
+            if current_node == target:
+                return step
+
+            for next in all neighbouring nodes to current node:
+                if next not in visted:
+                    qu.enqueue(next)
+                    visted.add(next)
+            qu.dequeue()
+
+    return -1

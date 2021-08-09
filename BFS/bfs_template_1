@@ -1,0 +1,54 @@
+
+"""
+1. As shown in the code, in each round, the nodes in the queue are the nodes which are waiting to be processed.
+2. After each outer while loop, we are one step farther from the root node. The variable step indicates the distance
+from the root node and the current node we are visiting.
+
+"""
+class Node:
+    def __init__(self):
+        pass
+
+class Queue:
+    def __init__(self):
+        self.q = []
+
+    def is_empty(self):
+        return len(self.q) == 0
+
+    def enqueue(self, elm):
+        self.q.append(elm)
+
+    def dequeue(self):
+        if self.is_empty():
+            raise Exception("Queue is empty")
+
+        self.q.pop(0)
+
+    def top(self):
+        if self.is_empty():
+            return None
+        return self.q[0]
+
+    def q_size(self):
+        return len(self.q)
+
+
+def bfs(root:Node, target:Node)->int:
+    qu = Queue()
+    step = 0
+
+    qu.enqueue(root)
+
+    while not qu.is_empty():
+        step += 1
+        size = qu.q_size()
+        for i in range(0,size):
+            current_node = qu.top()
+            if current_node == target:
+                return step
+            for nexts in all neighbors of current_node:
+                qu.enqueue(nexts)
+            qu.dequeue()
+    return -1
+
