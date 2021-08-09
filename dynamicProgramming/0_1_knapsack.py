@@ -32,12 +32,37 @@ def knapsack_recursive(wt, val, W, n):
         )
 
 
+def knapsack_dynamic_programming(wt, val, W, n, dp):
+    if W == 0 or n == 0:
+        return 0
+
+    if dp[n][W] is not None:
+        return dp[n][W]
+
+    if wt[n - 1] <= W:
+        dp[n][W] = max(
+            val[n - 1]
+            + knapsack_dynamic_programming(wt, val,
+                                           W - wt[n - 1], n - 1, dp),
+            knapsack_dynamic_programming(wt, val, W, n - 1, dp),
+        )
+        return dp[n][W]
+    else:
+        dp[n][W] = knapsack_dynamic_programming(wt, val, W, n - 1, dp)
+        return dp[n][W]
+
+
 def test():
     wt = [1, 3, 4, 5]
     val = [1, 4, 5, 7]
 
     W = 7
     assert knapsack_recursive(wt, val, W, 4) == 9, "Test case 1 failed."
+
+    dp = [[None] * (W + 1)] * ((len(wt) + 1))
+    assert (
+        knapsack_dynamic_programming(wt, val, W, len(wt), dp) == 9
+    ), "Test case 2 failed."
 
 
 if __name__ == "__main__":
