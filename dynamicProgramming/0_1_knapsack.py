@@ -32,7 +32,7 @@ def knapsack_recursive(wt, val, W, n):
         )
 
 
-def knapsack_dynamic_programming(wt, val, W, n, dp):
+def knapsack_memoize(wt, val, W, n, dp):
     if W == 0 or n == 0:
         return 0
 
@@ -41,15 +41,29 @@ def knapsack_dynamic_programming(wt, val, W, n, dp):
 
     if wt[n - 1] <= W:
         dp[n][W] = max(
-            val[n - 1]
-            + knapsack_dynamic_programming(wt, val,
-                                           W - wt[n - 1], n - 1, dp),
-            knapsack_dynamic_programming(wt, val, W, n - 1, dp),
+            val[n - 1] + knapsack_memoize(wt, val, W - wt[n - 1], n - 1, dp),
+            knapsack_memoize(wt, val, W, n - 1, dp),
         )
         return dp[n][W]
     else:
-        dp[n][W] = knapsack_dynamic_programming(wt, val, W, n - 1, dp)
+        dp[n][W] = knapsack_memoize(wt, val, W, n - 1, dp)
         return dp[n][W]
+
+
+def knapsack_top_down(wt, val, W, n, dp):
+    for i in range(n + 1):
+        for j in range(W + 1):
+            if i == 0 or j == 0:
+                dp[i][j] = 0  # base condition above returned 0
+    # print(dp)
+    for i in range(n + 1):
+        for j in range(W + 1):
+            if wt[i - 1] <= j:
+                dp[i][j] = max(val[i - 1] + dp[i - 1][j - wt[i - 1]], dp[i - 1][j])
+            else:
+                dp[i][j] = dp[i - 1][j]
+
+    return dp[n][W]
 
 
 def test():
@@ -60,9 +74,10 @@ def test():
     assert knapsack_recursive(wt, val, W, 4) == 9, "Test case 1 failed."
 
     dp = [[None] * (W + 1)] * ((len(wt) + 1))
-    assert (
-        knapsack_dynamic_programming(wt, val, W, len(wt), dp) == 9
-    ), "Test case 2 failed."
+    assert knapsack_memoize(wt, val, W, len(wt), dp) == 9, "Test case 2 failed."
+
+    dp = [[None] * (W + 1)] * ((len(wt) + 1))
+    assert knapsack_top_down(wt, val, W, len(wt), dp) == 9, "Test case 3 failed."
 
 
 if __name__ == "__main__":
