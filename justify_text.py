@@ -1,4 +1,4 @@
-'''
+"""
 We are building a word processor and we would like to implement a "reflow"
 functionality that also applies full justification to the text.
 Given an array containing lines of text and a new maximum width, re-flow the
@@ -50,14 +50,19 @@ reflowAndJustify(lines, 14) "reflow lines and justify to length 14" =>
 
 n = number of words OR total characters
 
-'''
+"""
 
-lines = ["The day began as still as the","night abruptly lighted with","brilliant flame"]
+lines = [
+    "The day began as still as the",
+    "night abruptly lighted with",
+    "brilliant flame",
+]
 test_reflow_width1 = 24
 test_reflow_width2 = 25
 test_reflow_width3 = 26
 test_reflow_width4 = 40
 test_reflow_width5 = 14
+
 
 def justify_text(lines, maxWidth):
     """
@@ -83,7 +88,7 @@ def justify_text(lines, maxWidth):
         # here length of next word + length if previous words + len of spaces (repersentted by len(current_line))
         if len(word) + current_line_width + len(current_line) > maxWidth:
             # check one word or multiple word. Need to add justified line
-            nspaces = len(current_line) -1 if len(current_line) - 1 else 1
+            nspaces = len(current_line) - 1 if len(current_line) - 1 else 1
 
             for i in range(maxWidth - current_line_width):
                 current_line[i % nspaces] += " "
@@ -97,12 +102,12 @@ def justify_text(lines, maxWidth):
 
     last_line = " ".join(current_line)
     last_line = last_line.strip()
-    last_line = last_line + " "*(maxWidth-len(last_line))
+    last_line = last_line + " " * (maxWidth - len(last_line))
     lines.append(last_line)
     return lines
 
 
 if __name__ == "__main__":
-    test_arr = [24, 25, 26,40,14]
+    test_arr = [24, 25, 26, 40, 14]
     for i in test_arr:
-        print(justify_text(lines,i))
+        print(justify_text(lines, i))
