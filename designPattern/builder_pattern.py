@@ -33,8 +33,7 @@ class IHouseBuilder(metaclass=ABCMeta):
 
 class House:
     def __init__(
-        self, wall_material="Brick", building_type="Apartment", doors=1,
-            windows=1
+        self, wall_material="Brick", building_type="Apartment", doors=1, windows=1
     ):
         self.wall_matrial = wall_material
         self.building_type = building_type
