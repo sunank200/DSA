@@ -59,7 +59,7 @@ def encrypt_based_on_key(key, message):
             order_key[current_index] = ch.lower()
             current_index += 1
             seen_dict[ch.lower()] = True
-
+    print(order_key)
     result = ""
     for ch in message:
         letter_index = ord(ch.lower()) % 97
