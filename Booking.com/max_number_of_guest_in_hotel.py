@@ -13,64 +13,72 @@ Input :
 {check-in : 5, check-out 12}
 ]
 
-Output : 2
+Output : 5
 
-
+https://www.geeksforgeeks.org/find-the-point-where-maximum-intervals-overlap/
 """
 
 
-def question_implementation(input):
-    days = {}
-    for i in input:
-        for k in range(i[0], i[1] + 1):
-            if k in days:
-                days[k] += 1
-            else:
-                days[k] = 1
-
-    return sorted(days.items(), key=lambda x: x[1], reverse=True)[0][0]
-
-
-import heapq
-
-
-def high_days(guests):
+def maximum_interval_overlap(intervals):
     """
-    The problem stated does not look like a real one. In real world if one
-    person leaves on day 5 and to persons arrive on day 5, there are only 2
-     guests in the hotel on that day. Because visitors usually leave before
-     new visitors arrive.
-    According to this amendment my solution would be
-    :param guests:
+    1. sort both arrival and departure times
+    2. if arrive2 <= exit1
+    there an overlap if arrival time of next is less than departure time of previous one
+    increase the guest_in and max_guest
+    else decerment guest_in
+    :param intervals:
     :return:
     """
-    schedule = []
 
-    for arrive, depart in guests:
-        heapq.heappush(schedule, (arrive, 1))
-        heapq.heappush(schedule, (depart, -1))
+    if len(intervals) == 0:
+        return 0, 0
+    arrive = [interval[0] for interval in intervals]
+    depart = [interval[1] for interval in intervals]
 
-    current_guests = max_day = max_day_guests = 0
+    arrive.sort()
+    depart.sort()
 
-    while schedule:
-        day, inout = heapq.heappop(schedule)
-        current_guests += inout
-        if current_guests > max_day_guests:
-            max_day = day
-            max_day_guests = current_guests
+    guest_in = 1
+    max_guest = 1
 
-    return max_day, max_day_guests
+    days = arrive[0]
+
+    i = 1
+    j = 0
+
+    while i < len(intervals) and j < len(intervals):
+        if arrive[i] <= depart[j]:
+            # there an overlap if arrival time of next is less than departure time of previous one
+            guest_in += 1
+
+            if guest_in > max_guest:
+                max_guest = guest_in
+                days = arrive[i]
+
+            i += 1
+        else:
+            guest_in -= 1
+            j += 1
+
+    return max_guest, days
+
+
+"""
+Another Efficient Solution : 
+Approach : 
+1). Create an auxiliary array used for storing dynamic data of starting and 
+ending points.
+2). Loop through the whole array of elements and increase the value at the s
+tarting point by 1 and similarly decrease the value after ending point by 1. 
+[Here we use the expressions “x[start[i]]-=1” and “x[end[i]+1]-=1”]
+3). While looping, after calculating the auxiliary array: permanently add the
+ value at current index and check for the maximum valued index traversing from 
+ left to right.
+Time Complexity : O(max(departure time)) 
+Auxiliary Space : O(max(departure time)) 
+"""
 
 
 if __name__ == "__main__":
-    guests = [
-        (1, 4),
-        (2, 5),
-        (10, 12),
-        (5, 9),
-        (5, 12),
-    ]
-    print(high_days(guests))
-
-    input = [(1, 4), (2, 5), (10, 12), (5, 9), (5, 12)]
-    print(question_implementation(input))
+    guest_timings = [(1, 4), (2, 5), (10, 12), (5, 9), (5, 12)]
+    print(maximum_interval_overlap(guest_timings))
