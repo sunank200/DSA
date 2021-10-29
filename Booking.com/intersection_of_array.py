@@ -63,3 +63,46 @@ Modify Approach 1 to collect counts only within a given subrange, and call the
 Use an external sort for both arrays. Modify Approach 2 to load and process 
 arrays sequentially.
 """
+
+
+class Solution:
+    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        """
+        Approach 1: use hashmap to store occurace from one list and check in other list.
+        Approach 2: sort both the array. then iterate in both
+
+        """
+
+        occurance_dict = {}
+
+        for i in nums1:
+            occurance_dict[i] = occurance_dict.get(i, 0) + 1
+
+        result = []
+        for i in nums2:
+            if i in occurance_dict and occurance_dict[i] > 0:
+                result.append(i)
+                occurance_dict[i] -= 1
+        return result
+
+
+#         nums1.sort()
+#         nums2.sort()
+#         i = 0
+#         j = 0
+
+#         result =[]
+
+#         while i < len(nums1) and j < len(nums2):
+#             if nums1[i]==nums2[j]:
+#                 result.append(nums1[i])
+#                 i+=1
+#                 j+=1
+
+#             elif nums1[i]<nums2[j]:
+#                 i+=1
+
+#             else:
+#                 j+=1
+
+#         return result

@@ -79,6 +79,37 @@ Auxiliary Space : O(max(departure time))
 """
 
 
+def findMaxGuests(intervals):
+    if len(intervals) == 0:
+        return 0
+    arrival = [interval[0] for interval in intervals]
+    departure = [interval[1] for interval in intervals]
+
+    # Find the time when the last guest leaves the event
+    t = max(departure)
+
+    # create a count array initialized by 0
+    count = [0] * (t + 2)
+
+    for i in range(len(arrival)):
+        count[arrival[i]] += 1
+        count[departure[i] + 1] -= 1
+
+    # keep track of the time when there are maximum guests
+    max_event_tm = count[0]
+
+    # perform a prefix sum computation to determine the guest count at each point
+    for i in range(1, t + 1):
+        count[i] += count[i - 1]
+        if count[max_event_tm] < count[i]:
+            max_event_tm = i
+
+    print("day:", max_event_tm)
+    print("The maximum number of guests is", count[max_event_tm])
+
+
 if __name__ == "__main__":
     guest_timings = [(1, 4), (2, 5), (10, 12), (5, 9), (5, 12)]
     print(maximum_interval_overlap(guest_timings))
+
+    findMaxGuests(guest_timings)
