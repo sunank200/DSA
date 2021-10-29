@@ -1,5 +1,5 @@
 """
-Trie or prefix tree is an n-ary tree in which characters
+Trie(PrefixTree) or prefix tree is an n-ary tree in which characters
 are stored at each node. Each path down the tree represents
 a word.
 """
